@@ -1,3 +1,6 @@
+import json
+
+import requests
 
 
 def get_biggest_bar():
