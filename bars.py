@@ -27,7 +27,7 @@ def get_biggest_bar(bars_data):
 
 
 def get_smallest_bar(bars_data):
-    small_data = max(bars_data,
+    small_data = min(bars_data,
                      key = lambda bars: bars['Cells']['SeatsCount'])
     small_data_short = {'Name':small_data['Cells']['Name'],
                         'Address':small_data['Cells']['Address'],
@@ -39,7 +39,7 @@ def get_closest_bar(bars_data, latitude, longitude):
     x_user, y_user = latitude, longitude
     for bar_data in bars_data:
         x_bar = float(bar_data['Cells']['geoData']['coordinates'][0])
-        y_bar = float(bar_datas['Cells']['geoData']['coordinates'][1])
+        y_bar = float(bar_data['Cells']['geoData']['coordinates'][1])
         distance = sqrt((x_bar - x_user)**2 + (y_bar - y_user)**2)
         bar_data['user_distance'] = distance
     closest_bar_data = min(bars_data, 
@@ -50,11 +50,38 @@ def get_closest_bar(bars_data, latitude, longitude):
     return closest_bar_data_short
 
 
+def print_max_min_seats_info(biggest_bar_info, smallest_bar_info):
+    print("""\nThe biggest Moscow bar is "{}".
+It has "{}" seats and located at "{}".""".
+            format(biggest_bar_info['Name'],
+                   biggest_bar_info['SeatsCount'],
+                   biggest_bar_info['Address']))
+    print("""\nThe smallest Moscow bar is "{}".
+It has "{}" seats and located at "{}".""".
+            format(smallest_bar_info['Name'],
+                   smallest_bar_info['SeatsCount'],
+                   smallest_bar_info['Address']))
+
+
 def main():
     fetched_data = fetch_bars_data()
-    biggest_bar_info = get_biggest_bar(fetched_data)
-    smallest_bar_info = get_smallest_bar(fetched_data)
-    print(biggest_bar_info)
+    if fetched_data is not None:
+        biggest_bar_info = get_biggest_bar(fetched_data)
+        smallest_bar_info = get_smallest_bar(fetched_data)
+        print_max_min_seats_info(biggest_bar_info, smallest_bar_info)
+        print('''\nNow let's find the closest to you bar. Type your coordinates -
+latitude and longitude, like: 55.753215 и 37.622504.''')
+    try:
+        user_latitude = float(input("\nLatitude:"))
+        user_longitude = float(input("Longitude:"))
+        print('\nThe bar to you is "{}". It is located at "{}".'.
+            format(get_closest_bar(fetched_data, user_latitude, user_longitude)[0],
+                   get_closest_bar(fetched_data, user_latitude, user_longitude)[1]))
+    except ValueError as wrong_input_info:
+        print(wrong_input_info)
+    else:
+        print('\nConnection problem - check your web access.')
+
 
 
 if __name__ == '__main__':
