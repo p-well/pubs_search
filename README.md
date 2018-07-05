@@ -46,6 +46,26 @@ The closest bar is "ТД ГУМ Кафе фестивальное Бар Кин�
 </pre>
 
 
+Script will raise an exception in case of incorrect input:
+
+<pre>
+Now let's find the closest to you bar. Type your coordinates -
+latitude and longitude, like: 55.753215 и 37.622504.
+
+Latitude:qwerty
+could not convert string to float: 'qwerty'
+</pre>
+
+
+Script can not work without access to the internet:
+
+<pre>
+<b> >python bars.py </b>
+
+Connection problem - check your web access.
+</pre>
+
+
 # Project Goals
 
 The code is written for educational purposes. Training course for web-developers -[DEVMAN.org](https://devman.org)
