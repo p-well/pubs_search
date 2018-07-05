@@ -1,7 +1,7 @@
 # Nearest Moscow Bars
 
 This script will help you to navigate better in the diversity of Moscow bars - it can find the biggest and the smallest bars <br />
-as well as the closest bar to you.
+as well as the closest bar to you and print out a brief information: bar name, address and seats number.
 
 The input data is retrieved by scrits from the Moscow City Government Open Data [data.mos.ru](https://data.mos.ru/) in JSON format.
 
@@ -20,7 +20,7 @@ It is recommended to use virtual environment to keep clean your global scope.
 # Usage
 
 To execute the script use the following command in CLI: ```python bars.py```
-You need to except some delays when running script due to the connection and server response.
+You need to expect some delays when running script due to the connection and server response.
 
 To find the nearest bar your have to enter your GPS coordinates: latitude and longitude respectively.
 
