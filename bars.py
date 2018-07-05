@@ -73,7 +73,6 @@ def print_closest_bar_info(closest_bar_info):
 
 
 def main():
-    os.system('chcp 1251')
     fetched_data = fetch_bars_data()
     if fetched_data is not None:
         biggest_bar_info = get_biggest_bar(fetched_data)
