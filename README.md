@@ -23,6 +23,8 @@ To execute the script use the following command in CLI: ```python bars.py```
 You need to expect some delays when running script due to the connection and server response.
 
 To find the nearest bar your have to enter your GPS coordinates: latitude and longitude respectively.
+User have to register on Moscow City Government Open Data [data.mos.ru](https://data.mos.ru/) for have access to the data.
+Save your API key in file <pre>settings.py</pre> stored in script directory: <pre>API_KEY = 'your_api_key'</pre>.
 
 
 # Example of Script Launch
